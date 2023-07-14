@@ -1,5 +1,8 @@
 export enum ComponentSizes {
-    lg = 1,
-    md = 2,
-    sm = 3,
+    lg = 'lg' ,
+    md = 'md' ,
+    sm = 'sm' ,
 }
+
+export type HTMLInputTypeAttribute = "number" | "search" | "button" | "time" | "image" | "text" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "month" | "password" | "radio" | "range"
+export type DefaultColors = "danger" | "success" | "primary" | "warning"

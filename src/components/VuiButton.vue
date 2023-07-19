@@ -1,40 +1,35 @@
 <script setup lang="ts">
-import { ComponentSizes, DefaultColors } from '../types/constants'
+import { Button } from '@/types/button';
+
+// import { ComponentSizes, DefaultColors } from '../types/constants'
 
 const props = defineProps<{
-    size?: ComponentSizes
-    color?: string | DefaultColors,
-    //Variant
-    shadow?: string
-    outlined?: boolean
-    prependIcon?: string,
-    appendIcon?: string,
+    meta?: Button
 }>();
+
 
 </script>
 
 <template>
-    <button class="rounded text-sm md:text-base " 
-    :class="[
-      {'shadow-xl': props.shadow == 'xl'},
-      {'shadow-lg': props.shadow == 'lg'},
-      {'shadow-md': props.shadow == 'md'},
-      {'shadow-sm': props.shadow == 'sm'},
-      props.size == 'lg' ? 'px-3 py-2' :
-        props.size == 'sm' ? 'px-1 py-0.5' : 'px-2 py-1',
-      props.outlined ? `border ${(
-        props.color == 'primary' ? 'border-blue-500 text-blue-500' :
-            props.color == 'success' ? 'border-green-500 text-green-500' :
-                props.color == 'warning' ? 'border-yellow-500 text-yellow-500' :
-                    props.color == 'danger' ? 'border-red-500 text-red-500' : 'border-gray-500 text-gray-500'
-        )}` : `text-white ${(
-        props.color == 'primary' ? 'bg-blue-500 hover:bg-opacity-70' :
-            props.color == 'success' ? 'bg-green-500 hover:bg-opacity-70' :
-                props.color == 'warning' ? 'bg-yellow-500 hover:bg-opacity-70' :
-                    props.color == 'danger' ? 'bg-red-500 hover:bg-opacity-70' : 'bg-gray-500 hover:bg-opacity-70'
-        )}`
-        
-    ]">
-        <slot />
-    </button>
+    <div class="px-0.5">
+        <div :class="[
+            props.meta?.size == 'lg' ? 'h-10' :
+                props.meta?.size == 'sm' ? 'h-6' :
+                    'h-8',
+            props.meta?.twColor ? `hover:bg-${props.meta?.twColor} text-${props.meta?.twColor} border-${props.meta?.twColor}` : '',
+            props.meta?.appendIcon || props.meta?.prependIcon ? 'justify-between' : 'justify-center',
+            props.meta?.defColor ? `hover:bg-${props.meta?.defColor} text-${props.meta?.defColor} border-${props.meta?.defColor}` : ''
+        ]"
+            class="border rounded-lg flex items-center overflow-hidden truncate duration-200 cursor-pointer hover:text-white">
+            <span class="material-icons" v-if="props.meta?.prependIcon">
+                {{ props.meta?.prependIcon }}
+            </span>
+            <span>
+                <slot />
+            </span>
+            <span class="material-icons" v-if="props.meta?.appendIcon">
+                {{ props.meta?.appendIcon }}
+            </span>
+        </div>
+    </div>
 </template>

@@ -1,8 +1,8 @@
-import { ComponentSizes } from "./constants"
+import { ComponentSizes, DefaultColors } from "./constants"
 
 export interface Button {
     label?: string;
-    defColor?: string;
+    defColor?: DefaultColors;
     twColor?: string;
     size?: ComponentSizes;
     shadow?: string;

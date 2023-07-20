@@ -15,17 +15,21 @@
                         </div>
                     </div>
                     <!-- BODY -->
-                    <div class="pt-4 pb-2 phone:px-3">
+                    <div class="pt-4 pb-2 phone:px-3 flex flex-wrap w-full">
                         <slot name="body"></slot>
                     </div>
                     <!-- ACTIONS -->
                     <div class="py-2 border-t flex justify-end items-center phone:px-3">
+                        <VuiButton v-if="props.buttons?.clear && !props.customActions" @click="emits('clear')" class="w-32" :meta="{defColor: 'info', prependIcon: 'clear_all'}">
+                            Clear
+                        </VuiButton>
                         <VuiButton @click="emits('cancel')" class="w-32" :meta="props.buttons?.cancel" v-if="!props.customActions">
                             {{ props.buttons?.accept?.label ?? 'Cancel' }}
                         </VuiButton>
-                        <VuiButton @click="emits('accept')" v-if="!props.customActions" :meta="props.buttons?.accept">
+                        <VuiButton @click="emits('accept')" class="w-32" :meta="props.buttons?.accept" v-if="!props.customActions">
                             {{ props.buttons?.accept?.label ?? 'Accept' }}
                         </VuiButton>
+                        <slot name="actions" v-if="props.customActions"></slot>
                     </div>
                 </div>
             </div>
@@ -43,12 +47,13 @@ const props = defineProps<{
     showing: boolean,
     buttons?: {
         accept?: Button
-        cancel?: Button
+        cancel?: Button,
+        clear?: boolean
     },
     customActions?: boolean
 }>()
 
-const emits = defineEmits(['close', 'cancel', 'accept'])
+const emits = defineEmits(['close', 'cancel', 'accept', 'clear'])
 
 </script>
 

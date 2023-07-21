@@ -1,3 +1,4 @@
+import { position } from "./common";
 import { ComponentSizes } from "./constants";
 
 
@@ -11,4 +12,10 @@ export interface Input{
     appendIcon?: string;
 
     outlined?: boolean;
+}
+
+export interface InputFloating extends Input{
+    position: position;
+    visible: boolean;
+    width?: number;
 }

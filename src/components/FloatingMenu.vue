@@ -1,6 +1,7 @@
 <template>
     <transition name="showing">
-        <div class="fixed py-0.5 border flex flex-col w-40 max-h-48 overflow-auto bg-white z-30 right-click-menu rounded-lg" ref="floating" v-if="props.visible">
+        <div class="fixed py-0.5 border flex flex-col w-40 max-h-48 overflow-auto bg-white z-30 rounded-lg right-click-menu"
+            ref="floating" v-if="props.visible">
             <slot />
         </div>
     </transition>
@@ -8,8 +9,8 @@
 
 <script setup lang="ts">
 import { Ref, ref, watch } from 'vue';
-import { position } from '@/types/constants'
-import { onClickOutside, until } from '@vueuse/core'
+import { position } from '@/types/common'
+import { onClickOutside, useWindowSize, until } from '@vueuse/core'
 
 
 const floating: Ref<HTMLDivElement | undefined> = ref()
@@ -19,22 +20,34 @@ const props = defineProps<{
     witdh?: number
 }>()
 const justOpened = ref(false)
+const { width } = useWindowSize()
 const emits = defineEmits(['close'])
 
 onClickOutside(floating, () => {
-    if(!justOpened.value) emits('close')
+    if (!justOpened.value) emits('close')
 })
+
+watch(
+    () => width.value,
+    () => {
+        emits('close')
+    },
+    {
+        immediate: true
+    }
+)
+
 
 watch(
     () => props.visible,
     async () => {
-        if(!props.visible) return
+        if (!props.visible) return
         justOpened.value = true
         await until(floating).toBeTruthy()
         floating.value!.style.top = `${props.position.y}px`
         floating.value!.style.left = `${props.position.x}px`
 
-        if(props.witdh) floating.value!.style.width = `${props.witdh}px`
+        if (props.witdh) floating.value!.style.width = `${props.witdh}px`
 
         setTimeout(() => {
             justOpened.value = false

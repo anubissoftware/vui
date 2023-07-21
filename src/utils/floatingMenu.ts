@@ -1,4 +1,4 @@
-import { position } from "@/types/constants"
+import { position } from "@/types/common"
 
 export const placeFloatingMenu = (element: HTMLDivElement, context?: HTMLDivElement): position => {
     let x = 0; let y = 0;

@@ -16,6 +16,6 @@ export interface Input{
 
 export interface InputFloating extends Input{
     position: position;
-    visible: boolean;
     width?: number;
+    fit?: boolean;
 }

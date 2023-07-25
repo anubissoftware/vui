@@ -20,6 +20,10 @@ export default {
         warning: 'rgb(234,179,8)',
         info: 'rgb(59,130,246)'
       },
+      width: {
+        '1/7': '14.28%',
+        '160': '40rem'
+      }
     },
   },
   plugins: [],

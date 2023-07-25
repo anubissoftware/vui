@@ -1,6 +1,6 @@
 <template>
     <transition name="showing">
-        <div class="fixed py-0.5 border flex flex-col w-40 max-h-48 overflow-auto bg-white z-30 rounded-lg right-click-menu"
+        <div class="fixed border-gray-400 py-0 border flex flex-col w-fit overflow-auto bg-white z-30 rounded-lg " 
             ref="floating" v-if="props.visible">
             <slot />
         </div>
@@ -72,30 +72,5 @@ watch(
     opacity: 0;
 }
 
-.right-click-menu {
-    background: #FAFAFA;
-    border: 1px solid #BDBDBD;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    display: block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    width: 230px;
-    z-index: 998;
-}
 
-.right-click-menu>div {
-    margin: 3px 0px;
-    padding: 2px 10px;
-    display: flex;
-    justify-content: left;
-    transition: 0.3s;
-}
-
-.right-click-menu>div:hover {
-    background-color: rgb(156, 163, 175);
-    transition: 0.3s;
-    font-weight: 600;
-}
 </style>

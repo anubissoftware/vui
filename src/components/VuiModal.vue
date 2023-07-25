@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <!-- BODY -->
-                    <div class="pt-4 pb-2 phone:px-3 flex flex-wrap w-full">
+                    <div class="pt-4 pb-2 phone:px-1 tablet:px-3 flex flex-wrap w-full">
                         <slot name="body"></slot>
                     </div>
                     <!-- ACTIONS -->

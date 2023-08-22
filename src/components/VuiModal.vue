@@ -39,6 +39,7 @@
 
 
 <script setup lang="ts">
+import { watch } from 'vue';
 import { VuiButton } from '../main';
 import { Button } from '@/types/button'
 
@@ -55,9 +56,30 @@ const props = defineProps<{
 
 const emits = defineEmits(['close', 'cancel', 'accept', 'clear'])
 
+const onKeyESC = (event: KeyboardEvent) => {
+    console.log('event')
+    if(event.key == "Escape"){
+        emits('close')
+    }
+}
+
+watch(
+    () => props.showing,
+    () => {
+        if(props.showing){
+            window.addEventListener('keydown', onKeyESC)
+        }else{
+            window.removeEventListener('keydown', onKeyESC)
+        }
+    },
+    {
+        immediate: true
+    }
+)
+
 </script>
 
-<style>
+<style scoped>
 .showing-enter-active,
 .showing-leave-active {
     transition: opacity 0.3s ease;

@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { DatePicker } from '@/types/select';
 import VuiFloatingInput from './VuiFloatingInput.vue';
-import { Ref, onMounted, ref } from 'vue';
+import { Ref, onMounted, ref, watch } from 'vue';
 import { position } from '@/types/common';
 import moment, { Moment } from 'moment'
 
@@ -127,5 +127,15 @@ const updateModel = (event: DayInfo) => {
 
     emits('update:modelValue', event.obj)
 }
+
+watch(
+    () => props.modelValue,
+    () => {
+        updateModel({date: '', obj: props.modelValue, name: ''})
+    },
+    {
+        immediate: true
+    }
+)
 
 </script>

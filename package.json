@@ -1,7 +1,7 @@
 {
   "name": "anubisapps-vui",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.6",
   "type": "module",
   "module": "./dist/vui.es.js",
   "types": "./dist/main.d.ts",
@@ -28,10 +28,6 @@
     "build:css": "tailwindcss build src/styles.css -o dist/styles.css"
   },
   "dependencies": {
-    "@vueuse/core": "^10.2.1",
-    "material-icons": "^1.13.8",
-    "moment": "^2.29.4",
-    "vite-plugin-style-inject": "^0.0.1",
     "vue": "^3.0.0"
   },
   "peerDependencies": {
@@ -51,6 +47,10 @@
     "vite": "^4.3.9",
     "vite-plugin-dts": "^2.3.0",
     "vite-plugin-libcss": "^1.1.0",
-    "vue-tsc": "^1.4.2"
+    "vue-tsc": "^1.4.2",
+    "@vueuse/core": "^10.2.1",
+    "material-icons": "^1.13.8",
+    "moment": "^2.29.4",
+    "vite-plugin-style-inject": "^0.0.1"
   }
 }

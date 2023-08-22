@@ -1,6 +1,6 @@
 <template>
     <transition name="showing">
-        <div class="fixed border-gray-400 py-0 border flex flex-col w-fit overflow-auto bg-white z-30 rounded-lg " 
+        <div class="fixed border-gray-400 py-0 border flex flex-col w-fit overflow-auto bg-white z-30 rounded-lg "
             ref="floating" v-if="props.visible">
             <slot />
         </div>
@@ -47,7 +47,13 @@ watch(
         floating.value!.style.top = `${props.position.y}px`
         floating.value!.style.left = `${props.position.x}px`
 
-        if (props.witdh) floating.value!.style.width = `${props.witdh}px`
+        console.log(props.witdh)
+        if (props.witdh) {
+            floating.value!.style.width = `${props.witdh}px`
+            console.log('here')
+        } else {
+            floating.value!.style.width = ``
+        }
 
         setTimeout(() => {
             justOpened.value = false
@@ -71,6 +77,4 @@ watch(
 .showing-leave-to {
     opacity: 0;
 }
-
-
 </style>

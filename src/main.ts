@@ -5,11 +5,12 @@ import VuiInput from "./components/VuiInput.vue"
 import VuiModal from "./components/VuiModal.vue"
 import VuiSelect from "./components/VuiSelect.vue"
 import VuiDatePicker from "./components/VuiDatePicker.vue"
+import VuiContextMenu from "./components/VuiContextMenu.vue"
 import 'material-icons/iconfont/material-icons.css';
 import "./main.css"
 import "@/extensions/string.ext"
 
-export { VuiButton, VuiInput, VuiModal, VuiSelect, VuiDatePicker }
+export { VuiButton, VuiInput, VuiModal, VuiSelect, VuiContextMenu, VuiDatePicker }
 export type { ComponentSizes, DefaultColors }
 
 export default {

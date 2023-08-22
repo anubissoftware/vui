@@ -4,6 +4,7 @@
             @focus="openPicker" @blur="visible = false" @append="openPicker" />
         <FloatingMenu :position="position" :witdh="width" ref="floating" :visible="visible" @close="closePicker">
             <slot />
+
         </FloatingMenu>
     </div>
 </template>
@@ -30,15 +31,18 @@ const width: Ref<number> = ref(0)
 const openPicker = async () => {
     visible.value = true
     await nextTick()
+    
+    if (!props.fit) {
+        width.value = input.value!.getBoundingClientRect().width;
+        console.log('fit', width.value)
+    } else {
+        width.value = 0
+    }
+
     const current: position = placeFloatingMenu(input.value!, (floating.value! as any).$el!)
     position.value.x = current.x
     position.value.y = current.y
 
-    if (!props.fit) {
-        width.value = input.value!.getBoundingClientRect().width;
-    } else {
-        width.value = 0
-    }
 }
 
 const closePicker = () => {

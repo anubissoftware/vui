@@ -50,14 +50,22 @@
 <script setup lang="ts">
 import { DatePicker } from '@/types/select';
 import VuiFloatingInput from './VuiFloatingInput.vue';
-import { Ref, onMounted, ref, watch } from 'vue';
+import { ComputedRef, Ref, computed, onMounted, ref } from 'vue';
 import { position } from '@/types/common';
 import moment, { Moment } from 'moment'
 
 const props = defineProps<DatePicker>()
 const floating: Ref<any> = ref()
 const emits = defineEmits(['update:modelValue'])
-const calculated: Ref<string> = ref('')
+const calculated: ComputedRef<string> = computed(() => {
+    let calculated = ''
+    if(props.modelValue){
+        calculated = props.modelValue.format('YYYY-MM-DD')
+    }else{
+        calculated = moment().format('YYYY-MM-DD')
+    }
+    return calculated
+})
 const width: Ref<number> = ref(0)
 const position: Ref<position> = ref({
     x: 0,
@@ -78,11 +86,6 @@ const draft: Ref<{ days: DayInfo[][], months: string[], years: string[], marker:
 
 
 onMounted(() => {
-    if(props.modelValue){
-        calculated.value = props.modelValue.format('YYYY-MM-DD')
-    }else{
-        calculated.value = moment().format('YYYY-MM-DD')
-    }
     feedDays()
 })
 
@@ -123,19 +126,8 @@ const feedDays = () => {
 
 const updateModel = (event: DayInfo) => {
     floating.value.closePicker()
-    calculated.value = event.obj.format('YYYY-MM-DD')
-
     emits('update:modelValue', event.obj)
 }
 
-watch(
-    () => props.modelValue,
-    () => {
-        updateModel({date: '', obj: props.modelValue, name: ''})
-    },
-    {
-        immediate: true
-    }
-)
 
 </script>

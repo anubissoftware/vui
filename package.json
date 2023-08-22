@@ -1,13 +1,18 @@
 {
   "name": "anubisapps-vui",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.8",
   "type": "module",
   "module": "./dist/vui.es.js",
   "types": "./dist/main.d.ts",
   "files": [
     "dist"
   ],
+  "author": {
+    "name": "Anubis Software S.A.S.",
+    "email": "contact@anubisapps.com",
+    "url": "https://anubisapps.com/"
+  },
   "license": "MIT",
   "keywords": [
     "vue 3",
